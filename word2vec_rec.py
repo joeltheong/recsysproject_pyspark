@@ -72,7 +72,7 @@ from pyspark.sql import functions as f
 def KeywordRecommender(key_words, sim_rec_limit=5):
 
   # load in data  
-  #indexed = sc.read.load("input/indexed.parquet")
+  indexed = sc.read.load("input/indexed.parquet")
   
   
   # load in word2vec model
