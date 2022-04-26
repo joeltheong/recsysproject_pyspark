@@ -66,7 +66,8 @@ from pyspark.sql import SparkSession
 
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
 
-indexed = sc.read.load("F:/Visual Studio/recsysproject_pyspark/input/indexed.parquet")
+#indexed = sc.read.load("F:/Visual Studio/recsysproject_pyspark/input/indexed.parquet")
+indexed = sc.read.load("input/indexed.parquet")
 
 def make_clickable(name, link):
     # target _blank to open new window
@@ -114,7 +115,7 @@ def main():
 
         col1, col2, col3 = st.columns([1, 6, 1])
         with col2:
-            gif_runner = st.image("F:/Visual Studio/recsysproject_pyspark/input/cooking_gif.gif")
+            gif_runner = st.image("input/cooking_gif.gif")
         # recipe = rec_sys.RecSys(ingredients)
         recipe = KeywordRecommender(ingredients)
         recipe = recipe.toPandas()
