@@ -39,6 +39,7 @@ notebook==6.4.0
 numpy
 packaging==21.0
 pandas
+pyspark==3.2.1
 pandocfilters==1.4.3
 parso==0.8.2
 pexpect==4.8.0
