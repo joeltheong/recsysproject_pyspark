@@ -67,7 +67,12 @@ from pyspark.sql import SparkSession
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
 
 #indexed = sc.read.load("F:/Visual Studio/recsysproject_pyspark/input/indexed.parquet")
-indexed = sc.read.load("input/indexed.parquet")
+
+@st.cache
+def load_indexed():
+    return sc.read.load("input/indexed.parquet")
+
+indexed = load_indexed()
 
 def make_clickable(name, link):
     # target _blank to open new window

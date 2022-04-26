@@ -66,13 +66,14 @@ from pyspark.sql import functions as f
 #from sklearn.preprocessing import MinMaxScaler
 
 
-indexed = sc.read.load("input/indexed.parquet")
+#indexed = sc.read.load("input/indexed.parquet")
 
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
 
   # load in data  
   #indexed = sc.read.load("F:/Visual Studio/recsysproject_pyspark/input/indexed.parquet")
+  indexed = load_indexed()
   
   # load in word2vec model
   pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
