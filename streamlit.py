@@ -171,25 +171,7 @@ def main():
             # st.write(f"Score: {selection_details.score.values[0]}")
 
             st.subheader("Steps:")
-            col3 = st.columns(1)
-            steps_disp = [
-                step
-                for step in steps_disp
-                if step
-                not in [
-                    " skin off",
-                    " bone out",
-                    " from sustainable sources",
-                    " minced",
-                ]
-            ]
-            steps_disp1 = steps_disp[len(steps_disp) // 2 :]
-            #steps_disp2 = steps_disp[: len(steps_disp) // 2]
-            for step in steps_disp1:
-                col3.markdown(f"* {step}")
-            #for step in steps_disp2:
-                #col2.markdown(f"* {step}")
-            # st.write(f"Score: {selection_details.score.values[0]}")
+            st.markdown(steps_disp.tolist())
 
 if __name__ == "__main__":
     main()
