@@ -54,19 +54,12 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
-#try:
-    #nltk.data.find("corpora/wordnet")
-#except LookupError:
-    #nltk.download("wordnet")
-
 #def _initialize_spark() -> SparkSession:
     #conf = SparkConf().setAppName("recsysproject").config("spark.driver.memory", "2g").setMaster("local")
     #spark = SparkSession.builder.config(conf=conf).getOrCreate()
     #return spark
 
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
-
-#indexed = sc.read.load("F:/Visual Studio/recsysproject_pyspark/input/indexed.parquet")
 
 indexed = sc.read.load("input/indexed.parquet")
 

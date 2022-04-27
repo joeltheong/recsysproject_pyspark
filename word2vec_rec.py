@@ -1,11 +1,11 @@
 import sys
 import logging
-import unidecode
+#import unidecode
 import ast
 
-from gensim.models import Word2Vec
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+#from gensim.models import Word2Vec
+#from sklearn.feature_extraction.text import TfidfVectorizer
+#from sklearn.metrics.pairwise import cosine_similarity
 from collections import defaultdict
 
 import config
