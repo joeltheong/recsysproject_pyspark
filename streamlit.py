@@ -54,11 +54,6 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
-#def _initialize_spark() -> SparkSession:
-    #conf = SparkConf().setAppName("recsysproject").config("spark.driver.memory", "2g").setMaster("local")
-    #spark = SparkSession.builder.config(conf=conf).getOrCreate()
-    #return spark
-
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
 
 indexed = sc.read.load("input/indexed.parquet")
@@ -122,7 +117,7 @@ def main():
          #   lambda row: make_clickable(row["recipe"], row["url"]), axis=1
         #)
         #recipe_display = recipe[["rec_id", "score", "name", "ingredients", "steps"]]
-        recipe_display = recipe[["name", "ingredients", "steps"]]        
+        recipe_display = recipe[["name", "ingredients", "score"]]        
         #recipe_display = recipe_display.toPandas()
         session_state.recipe_display = recipe_display.to_html(escape=False)
         session_state.recipes = recipe.name.values.tolist()

@@ -1,4 +1,4 @@
-name: whatscooking_gensim
+name: recysproject_pyspark
 channels:
   - defaults
 dependencies:
@@ -7,7 +7,5 @@ dependencies:
   - pip:
       - streamlit
       - numpy==1.19.2
-      - gensim
-      # - opencv
       - pandas==1.2.3
       - sklearn
