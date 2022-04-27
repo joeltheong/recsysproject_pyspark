@@ -135,7 +135,7 @@ def main():
             st.write(session_state.recipe_display, unsafe_allow_html=True)
         else:
             selection = st.selectbox(
-                "Select a delicious recipe", options=session_state.recipes
+                "Select a single recipe", options=session_state.recipes
             )
             #session_state.recipe_df_clean = session_state.recipe_df_clean.toPandas()
             selection_details = session_state.recipe_df_clean.loc[
@@ -146,7 +146,8 @@ def main():
             st.markdown(f"# {selection_details.name.values[0]}")
             #st.subheader(f"Website: {selection_details.url.values[0]}")
             #ingredients_disp = selection_details.ingredients.values[0].split(",")
-            ingredients_disp = selection_details.ingredients.values[0]            
+            ingredients_disp = selection_details.ingredients.values[0]
+            steps_disp = selection_details.steps.values[0]                            
             
             st.subheader("Ingredients:")
             col1, col2 = st.columns(2)
@@ -167,6 +168,27 @@ def main():
                 col1.markdown(f"* {ingred}")
             for ingred in ingredients_disp2:
                 col2.markdown(f"* {ingred}")
+            # st.write(f"Score: {selection_details.score.values[0]}")
+
+            st.subheader("Steps:")
+            col1, col2 = st.columns(2)
+            steps_disp = [
+                step
+                for step in steps_disp
+                if step
+                not in [
+                    " skin off",
+                    " bone out",
+                    " from sustainable sources",
+                    " minced",
+                ]
+            ]
+            steps_disp1 = steps_disp[len(steps_disp) // 2 :]
+            steps_disp2 = steps_disp[: len(steps_disp) // 2]
+            for step in steps_disp1:
+                col1.markdown(f"* {step}")
+            for step in steps_disp2:
+                col2.markdown(f"* {step}")
             # st.write(f"Score: {selection_details.score.values[0]}")
 
 if __name__ == "__main__":
