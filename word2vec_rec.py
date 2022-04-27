@@ -1,9 +1,7 @@
 import sys
 import logging
 import ast
-
 from collections import defaultdict
-
 import config
 
 # Initiating Spark Session
