@@ -6,7 +6,8 @@ FROM python:3.8
 # We cannot press Y so we do it automatically 
 RUN apt-get update && apt-get install -y \
     git \
-    curl \
+    default-jdk -y \
+    curl \    
     ca-certificates \
     python3 \
     python3-pip \
@@ -22,9 +23,10 @@ WORKDIR /app
 ADD . /app
 
 # Install all of the requirements 
-RUN pip3 install -r requirements.txt
-# Download wordnet 
-#RUN python3 -c "import nltk; nltk.download('wordnet')"
+RUN pip install -r requirements.txt
+
+# Environment 
+ENV PYSPARK_PYTHON=python3
 
 # CMD executes once the container is started
 ENTRYPOINT ["streamlit","run", "streamlit.py", "--server.port=8080", "--server.address=0.0.0.0"]
