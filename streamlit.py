@@ -111,10 +111,10 @@ def main():
             ingredients_disp = selection_details.ingredients.values[0]
             steps_disp = selection_details.steps.values[0]                            
             
-            st.subheader("Score:100::")            
+            st.subheader("Score:100:")            
             st.write(f"{selection_details.score.values[0]}")
 
-            st.subheader("Ingredients:pineapple::")
+            st.subheader("Ingredients:pineapple:")
             col1, col2 = st.columns(2)
             ingredients_disp = [
                 ingred
@@ -134,7 +134,7 @@ def main():
             for ingred in ingredients_disp2:
                 col2.markdown(f"* {ingred}")
 
-            st.subheader("Steps::memo:")
+            st.subheader("Steps:memo:")
             st.markdown(steps_disp)
 
 if __name__ == "__main__":
