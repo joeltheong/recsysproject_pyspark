@@ -171,7 +171,7 @@ def main():
             # st.write(f"Score: {selection_details.score.values[0]}")
 
             st.subheader("Steps:")
-            #col1, col2 = st.columns(2)
+            col3 = st.columns(1)
             steps_disp = [
                 step
                 for step in steps_disp
@@ -185,8 +185,8 @@ def main():
             ]
             #steps_disp1 = steps_disp[len(steps_disp) // 2 :]
             #steps_disp2 = steps_disp[: len(steps_disp) // 2]
-            #for step in steps_disp1:
-                #col1.markdown(f"* {step}")
+            for step in steps_disp:
+                col3.markdown(f"* {step}")
             #for step in steps_disp2:
                 #col2.markdown(f"* {step}")
             # st.write(f"Score: {selection_details.score.values[0]}")
