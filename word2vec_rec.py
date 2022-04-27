@@ -1,20 +1,10 @@
 import sys
 import logging
-#import unidecode
 import ast
 
-#from gensim.models import Word2Vec
-#from sklearn.feature_extraction.text import TfidfVectorizer
-#from sklearn.metrics.pairwise import cosine_similarity
 from collections import defaultdict
 
 import config
-#from ingredient_parser import ingredient_parser
-
-# Java
-#import os
-#os.environ["JAVA_HOME"] = "C:/Program Files/Java/jdk1.8.0_311"
-#os.environ["SPARK_HOME"] = "C:/spark-3.2.1-bin-hadoop2.7"
 
 # Initiating Spark Session
 import findspark
@@ -25,18 +15,9 @@ sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g"
 # Initiating spark context
 from pyspark import SparkConf
 from pyspark import SparkContext
-#sc = spark.sparkContext
-
-
-# Evaluation metrics for recommender system 
-#!pip install ml_metrics
-#!pip install recmetrics
 
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt
-
-#import folium
 import html
 
 # NLP
@@ -54,26 +35,9 @@ from pyspark.sql import Row
 from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
-# Collaborative
-#from pyspark.ml.recommendation import ALS, ALSModel
-#from pyspark.ml.tuning import TrainValidationSplit, ParamGridBuilder, CrossValidator, CrossValidatorModel
-#from pyspark.ml.evaluation import RegressionEvaluator
-
-# Evaluation metrics
-#import ml_metrics as metrics
-#import recmetrics as met
-
-#from sklearn.preprocessing import MinMaxScaler
-
-
 indexed = sc.read.load("input/indexed.parquet")
 
-
 def KeywordRecommender(key_words, sim_rec_limit=5):
-
-  # load in data  
-  #indexed = sc.read.load("input/indexed.parquet")
-  
   
   # load in word2vec model
   pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
@@ -120,7 +84,6 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
   df = df.withColumn('rec_type', lit('Keyword'))
 
   return df
-
 
 # A function to get the recipe details
 def GetRecipeDetails(input_rec):
