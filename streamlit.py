@@ -168,7 +168,7 @@ def main():
                 col1.markdown(f"* {ingred}")
             for ingred in ingredients_disp2:
                 col2.markdown(f"* {ingred}")
-            # st.write(f"Score: {selection_details.score.values[0]}")
+            st.write(f"Score: {selection_details.score.values[0]}")
 
             st.subheader("Steps:")
             st.markdown(steps_disp)
