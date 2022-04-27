@@ -171,7 +171,7 @@ def main():
             # st.write(f"Score: {selection_details.score.values[0]}")
 
             st.subheader("Steps:")
-            st.markdown(steps_disp.tolist())
+            st.markdown(steps_disp)
 
 if __name__ == "__main__":
     main()
