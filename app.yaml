@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-service: default
+service: streamlitpyspark
 runtime: custom
 env: flex
 entrypoint: gunicorn -b :$PORT main:app
@@ -28,5 +28,5 @@ manual_scaling:
   instances: 1
 resources:
   cpu: 1
-  memory_gb: 0.5
+  memory_gb: 2
   disk_size_gb: 10
