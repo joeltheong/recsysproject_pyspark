@@ -183,9 +183,9 @@ def main():
                     " minced",
                 ]
             ]
-            #steps_disp1 = steps_disp[len(steps_disp) // 2 :]
+            steps_disp1 = steps_disp[len(steps_disp) // 2 :]
             #steps_disp2 = steps_disp[: len(steps_disp) // 2]
-            for step in steps_disp:
+            for step in steps_disp1:
                 col3.markdown(f"* {step}")
             #for step in steps_disp2:
                 #col2.markdown(f"* {step}")
