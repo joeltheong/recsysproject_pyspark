@@ -70,7 +70,7 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
 
   # Get similarity
   recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1])).collect()
-  sim_rec_byword_rdd = sc.sparkContext.parallelize((i[0], float(CosineSim(input_key_words_vec, i[1]))) for i in recipe_vecs)
+  sim_rec_byword_rdd = sc.sparkContext.parallelize(((i[0], float(CosineSim(input_key_words_vec, i[1]))) for i in recipe_vecs),numslices=1000)
 
   sim_rec_byword_df = sc.createDataFrame(sim_rec_byword_rdd) \
          .withColumnRenamed('_1', 'rec_id') \
