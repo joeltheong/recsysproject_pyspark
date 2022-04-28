@@ -37,7 +37,8 @@ from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "10g").getOrCreate()
-sc.logging.getLogger("py4j").setLevel(logging.ERROR)
+logger = sc._jvm.org.apache.log4j
+logging.getLogger("py4j").setLevel(logging.ERROR)
 
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 #def load_indexed():
