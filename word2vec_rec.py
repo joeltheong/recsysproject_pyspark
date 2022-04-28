@@ -8,7 +8,7 @@ import config
 import findspark
 findspark.init()
 from pyspark.sql import SparkSession
-sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "10g").getOrCreate()
+sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "5g").getOrCreate()
 
 # Initiating spark context
 from pyspark import SparkConf
