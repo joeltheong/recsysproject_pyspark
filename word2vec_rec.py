@@ -35,7 +35,7 @@ from pyspark.sql import functions as f
 
 indexed = sc.read.parquet("input/indexed.parquet")
 indexed.createOrReplaceTempView("indexed")
-#indexed.persist()
+indexed.persist()
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
 #indexed = load_indexed()
@@ -44,13 +44,13 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
   
   # load in word2vec model
   pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
-  pipeline_mdl.createOrReplaceTempView("pipeline_mdl")
+  #pipeline_mdl.createOrReplaceTempView("pipeline_mdl")
   pipeline_mdl.persist()
   
   # Transform the recipes data
-  recipes_pipeline_df = pipeline_mdl.transform(indexed)
-  recipes_pipeline_df.createOrReplaceTempView("recipes_pipeline_df")
-  recipes_pipeline_df.persist()
+  recipes_pipeline_df = pipeline_mdl.transform(indexed).cache()
+  #recipes_pipeline_df.createOrReplaceTempView("recipes_pipeline_df")
+  #recipes_pipeline_df.persist()
 
   print('\nRecipes containing your ingredients: "' + key_words + '"')
     
