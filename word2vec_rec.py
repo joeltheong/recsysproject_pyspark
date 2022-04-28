@@ -17,7 +17,6 @@ from pyspark import SparkContext
 import numpy as np
 import pandas as pd
 import html
-from streamlit import indexed
 
 # NLP
 from operator import add
