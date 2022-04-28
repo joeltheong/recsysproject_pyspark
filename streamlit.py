@@ -36,7 +36,7 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
-sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "10g").getOrCreate()
+sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
 logger = sc._jvm.org.apache.log4j
 logging.getLogger("py4j").setLevel(logging.ERROR)
 
