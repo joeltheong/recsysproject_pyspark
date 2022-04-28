@@ -17,7 +17,7 @@ from pyspark import SparkContext
 import numpy as np
 import pandas as pd
 import html
-from streamlit import load_indexed
+from streamlit import indexed
 
 # NLP
 from operator import add
@@ -37,7 +37,7 @@ from pyspark.sql import functions as f
 #indexed = sc.read.load("input/indexed.parquet")
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
-indexed = load_indexed()
+#indexed = load_indexed()
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
   
