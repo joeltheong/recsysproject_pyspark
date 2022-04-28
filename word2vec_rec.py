@@ -34,7 +34,8 @@ from pyspark.sql import Row
 from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
-#indexed = sc.read.load("input/indexed.parquet")
+indexed = sc.read.load("input/indexed.parquet")
+indexed.cache()
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
 #indexed = load_indexed()
