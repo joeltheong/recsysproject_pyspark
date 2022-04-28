@@ -37,7 +37,11 @@ from pyspark.sql import SparkSession
 
 sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
 
-indexed = sc.read.load("input/indexed.parquet")
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+def load_indexed():
+    return sc.read.load("input/indexed.parquet")
+
+indexed = load_indexed()
 
 def make_clickable(name, link):
     text = name

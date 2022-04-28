@@ -33,7 +33,8 @@ from pyspark.sql import Row
 from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
-indexed = sc.read.load("input/indexed.parquet")
+#indexed = sc.read.load("input/indexed.parquet")
+indexed = load_indexed()
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
   
