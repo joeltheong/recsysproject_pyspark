@@ -25,7 +25,7 @@ import html
 #from pyspark.ml.feature import StopWordsRemover, VectorAssembler
 #from pyspark.ml.feature import Word2Vec, Word2VecModel
 #from pyspark.ml.feature import IDF
-#from pyspark.ml import Pipeline, PipelineModel
+from pyspark.ml import Pipeline, PipelineModel
 
 # SQL
 from pyspark.sql.functions import *
