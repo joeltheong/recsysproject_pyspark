@@ -4,6 +4,7 @@ import numpy as np
 import SessionState
 import os
 from PIL import Image
+import logging
 import config
 from word2vec_rec import KeywordRecommender
 
