@@ -8,7 +8,7 @@ import config
 import findspark
 findspark.init()
 from pyspark.sql import SparkSession
-sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "2g").getOrCreate()
+sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
 
 
 # Initiating spark context
@@ -50,7 +50,7 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
   #pipeline_mdl.persist()
   
   # Transform the recipes data
-  recipes_pipeline_df = pipeline_mdl.transform(indexed).cache()
+  recipes_pipeline_df = pipeline_mdl.transform(indexed).persist()
   #recipes_pipeline_df.createOrReplaceTempView("recipes_pipeline_df")
   #recipes_pipeline_df.persist()
 
