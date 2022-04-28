@@ -34,18 +34,19 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
 indexed = sc.read.parquet("input/indexed.parquet")
-indexed.createOrReplaceTempView("indexed")
-indexed.persist()
+#indexed.createOrReplaceTempView("indexed")
+#indexed.persist()
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
 #indexed = load_indexed()
+pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
   
   # load in word2vec model
-  pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
+  #pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
   #pipeline_mdl.createOrReplaceTempView("pipeline_mdl")
-  pipeline_mdl.persist()
+  #pipeline_mdl.persist()
   
   # Transform the recipes data
   recipes_pipeline_df = pipeline_mdl.transform(indexed).cache()
