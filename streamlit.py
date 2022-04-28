@@ -45,6 +45,10 @@ logging.getLogger("py4j").setLevel(logging.ERROR)
 
 #indexed = load_indexed()
 
+indexed = sc.read.parquet("input/indexed.parquet")
+pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
+
+
 def make_clickable(name, link):
     text = name
     return f'<a target="_blank" href="{link}">{text}</a>'

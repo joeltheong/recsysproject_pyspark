@@ -20,12 +20,12 @@ import pandas as pd
 import html
 
 # NLP
-from operator import add
-from pyspark.ml.feature import RegexTokenizer, CountVectorizer
-from pyspark.ml.feature import StopWordsRemover, VectorAssembler
-from pyspark.ml.feature import Word2Vec, Word2VecModel
-from pyspark.ml.feature import IDF
-from pyspark.ml import Pipeline, PipelineModel
+#from operator import add
+#from pyspark.ml.feature import RegexTokenizer, CountVectorizer
+#from pyspark.ml.feature import StopWordsRemover, VectorAssembler
+#from pyspark.ml.feature import Word2Vec, Word2VecModel
+#from pyspark.ml.feature import IDF
+#from pyspark.ml import Pipeline, PipelineModel
 
 # SQL
 from pyspark.sql.functions import *
@@ -34,13 +34,13 @@ from pyspark.sql import Row
 from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
-indexed = sc.read.parquet("input/indexed.parquet")
+#indexed = sc.read.parquet("input/indexed.parquet")
 #indexed.createOrReplaceTempView("indexed")
 #indexed.persist()
 #@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
 #indexed = load_indexed()
-pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
+#pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
   
