@@ -8,8 +8,16 @@ import config
 import findspark
 findspark.init()
 from pyspark.sql import SparkSession
-sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+#sc = SparkContext('local[*]', 'predict_data')
 
+sc = SparkSession \
+    .builder \
+    .appName("word2vec") \
+    .config('spark.sql.shuffle.partitions', 200).config("spark.debug.maxToStringFields", "100").config('spark.default.parallelism', 300)\
+    .config('spark.driver.maxResultsSize', '0') \
+    .getOrCreate()
 
 # Initiating spark context
 from pyspark import SparkConf

@@ -36,7 +36,14 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
-sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+sc = SparkSession \
+    .builder \
+    .appName("word2vec") \
+    .config('spark.sql.shuffle.partitions', 200).config("spark.debug.maxToStringFields", "100").config('spark.default.parallelism', 300)\
+    .config('spark.driver.maxResultsSize', '0') \
+    .getOrCreate()
+
 logger = sc._jvm.org.apache.log4j
 logging.getLogger("py4j").setLevel(logging.ERROR)
 
