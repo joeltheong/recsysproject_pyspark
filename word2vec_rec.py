@@ -16,7 +16,7 @@ sc = SparkSession \
     .builder \
     .appName("word2vec") \
     .config('spark.sql.shuffle.partitions', 200).config("spark.debug.maxToStringFields", "100").config('spark.default.parallelism', 300)\
-    .config("spark.driver.memory","10g").config('spark.driver.maxResultsSize', '0') \
+    .config("spark.driver.memory","2g").config('spark.driver.maxResultsSize', '0') \
     .getOrCreate()
 
 # Initiating spark context
@@ -49,6 +49,7 @@ indexed = sc.read.parquet("input/indexed.parquet")
 
 #indexed = load_indexed()
 pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
+recipes_pipeline_df = pipeline_mdl.transform(indexed).persist()
 
 def KeywordRecommender(key_words, sim_rec_limit=5):
   
@@ -58,7 +59,7 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
   #pipeline_mdl.persist()
   
   # Transform the recipes data
-  recipes_pipeline_df = pipeline_mdl.transform(indexed).persist()
+
   #recipes_pipeline_df.createOrReplaceTempView("recipes_pipeline_df")
   #recipes_pipeline_df.persist()
 
