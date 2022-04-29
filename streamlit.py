@@ -41,7 +41,7 @@ sc = SparkSession \
     .builder \
     .appName("word2vec") \
     .config('spark.sql.shuffle.partitions', 200).config("spark.debug.maxToStringFields", "100").config('spark.default.parallelism', 300)\
-    .config("spark.driver.memory","2g").config('spark.driver.maxResultsSize', '0') \
+    .config('spark.driver.maxResultsSize', '0') \
     .getOrCreate()
 
 logger = sc._jvm.org.apache.log4j
