@@ -36,7 +36,7 @@ from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 from pyspark.sql import SparkSession
 
-#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
+# Spark Session 
 sc = SparkSession \
     .builder \
     .appName("word2vec") \
@@ -46,14 +46,6 @@ sc = SparkSession \
 
 logger = sc._jvm.org.apache.log4j
 logging.getLogger("py4j").setLevel(logging.ERROR)
-
-#@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
-#def load_indexed():
-    #return sc.read.load("input/indexed.parquet")
-
-#indexed = load_indexed()
-
-
 
 
 def make_clickable(name, link):
@@ -156,3 +148,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+#@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
+#def load_indexed():
+    #return sc.read.load("input/indexed.parquet")
+
+#indexed = load_indexed()
+
+
