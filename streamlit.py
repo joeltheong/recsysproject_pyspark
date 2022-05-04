@@ -148,13 +148,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-#@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
-#def load_indexed():
-    #return sc.read.load("input/indexed.parquet")
-
-#indexed = load_indexed()
-
-

@@ -8,9 +8,6 @@ import config
 import findspark
 findspark.init()
 from pyspark.sql import SparkSession
-#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
-#sc = SparkSession.builder.appName("word2vec").config("spark.driver.memory", "4g").getOrCreate()
-#sc = SparkContext('local[*]', 'predict_data')
 
 sc = SparkSession \
     .builder \
@@ -18,7 +15,7 @@ sc = SparkSession \
     .config('spark.sql.shuffle.partitions', 200).config("spark.debug.maxToStringFields", "100").config('spark.default.parallelism', 300)\
     .config('spark.driver.maxResultsSize', '0') \
     .getOrCreate()
-#.config("spark.driver.memory","2g").
+
 # Initiating spark context
 from pyspark import SparkConf
 from pyspark import SparkContext
@@ -28,11 +25,7 @@ import pandas as pd
 import html
 
 # NLP
-#from operator import add
-#from pyspark.ml.feature import RegexTokenizer, CountVectorizer
-#from pyspark.ml.feature import StopWordsRemover, VectorAssembler
-#from pyspark.ml.feature import Word2Vec, Word2VecModel
-#from pyspark.ml.feature import IDF
+from pyspark.ml.feature import Word2Vec, Word2VecModel
 from pyspark.ml import Pipeline, PipelineModel
 
 # SQL
@@ -42,18 +35,15 @@ from pyspark.sql import Row
 from pyspark.sql.functions import split, col
 from pyspark.sql import functions as f
 
+# Load pre-processed data
 indexed = sc.read.parquet("input/indexed.parquet")
-#indexed.createOrReplaceTempView("indexed")
-#indexed.persist()
-#@st.cache(allow_output_mutation=True, suppress_st_warning=True, hash_funcs={"MyUnhashableClass": lambda _: None})
 
-# Load pipeline model
+# Load Word2Vec pipeline model
 pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
 
-# Load data and transform with Word2Vec model
+# Transform data to gather document (ingredient) vectors of recipes
 recipes_pipeline_df = pipeline_mdl.transform(indexed)
-recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1])).collect().persist()
-
+recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1])).collect()
 
 # Function to get recipe details
 def GetRecipeDetails(input_rec):
@@ -88,7 +78,6 @@ def KeywordRecommender(key_words, sim_rec_limit=5):
       return np.dot(vec1, vec2) / np.sqrt(np.dot(vec1, vec1)) / np.sqrt(np.dot(vec2, vec2)) 
 
   # Get cosine similarity
-  #recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1])).collect()
   sim_rec_byword_rdd = sc.sparkContext.parallelize((i[0], float(CosineSim(input_key_words_vec, i[1]))) for i in recipe_vecs)
 
   sim_rec_byword_df = sc.createDataFrame(sim_rec_byword_rdd) \
