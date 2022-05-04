@@ -80,7 +80,7 @@ def main():
 
     ingredients = st.text_input(
         "Enter ingredients you would like to cook with (seperated with a comma)",
-        "butter, chicken, rice, prawns, carrots, garlic",
+        "veal roast, bacon, carrots, parsley, thyme, onion, butter, pepper",
     )
     session_state.execute_recsys = st.button("Show me what you've got!")
 
