@@ -43,7 +43,7 @@ pipeline_mdl = PipelineModel.load("models/w2vmodel2" + 'pipe_txt')
 
 # Transform data to gather document (ingredient) vectors of recipes
 recipes_pipeline_df = pipeline_mdl.transform(indexed)
-recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1])).collect()
+recipe_vecs = recipes_pipeline_df.select('rec_id', 'word_vec').rdd.map(lambda x: (x[0], x[1]))
 
 # Function to get recipe details
 def GetRecipeDetails(input_rec):
